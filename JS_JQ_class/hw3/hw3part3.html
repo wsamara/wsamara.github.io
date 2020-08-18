@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 3 Part 3: Converting Temprature</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CCSF's Spring 2020 CNIT 133 Homework 3 Part 3: using JavaScript and JQuerry to perform basic functions on input values; converting Celsius to Farenheit and vice versa">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            console.log ("document ready");
+            $("#input").focus();
+            $("#myform").validate({
+                rules: 
+            {
+		      input: { required: true, number: true},             
+      
+            }         
+            });
+            $("#celsius").click (function () {
+            console.log ("are my inputs valid?");
+              if ($("#myform").valid ()){ 
+                console.log ("inputs valid");
+                celsius ();
+                } else {$("#input").select ();}                      
+            });
+            $("#farenheit").click (function () {
+            console.log ("are my inputs valid?");
+              if ($("#myform").valid ()){ 
+                console.log ("inputs valid");
+                farenheit ();
+                } else {$("#input").select ();}                      
+            });
+             $("#reset").click (function () {
+                console.log ("reloading page");
+                location.reload ();              
+            });                      
+                       
+        });
+              function farenheit () {
+                console.log ("converting to farenheit");
+                 var myInput, myOutput;
+                  
+                  myInput = parseInt($("#input").val () );
+                  myOutput = (9/5 * myInput) + 32;
+                  $("#output").val(myOutput.toFixed (0) + " degrees farenheit");                                                                     
+                 }   
+            function celsius () {
+                console.log ("converting to celsuis");
+                 var myInput, myOutput;
+                  
+                  myInput = parseInt($("#input").val () );
+                  myOutput = 5/9 * (myInput - 32) ;
+                  $("#output").val(myOutput.toFixed (0) + " degrees celsius");                                                                     
+                 }  
+      
+        </script>   
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 3 Part 3: Converting Temperature</h1>        
+            
+              <form name ="myform" id="myform">
+            <table>
+                <tr><td><label for="input">Temperature: </label></td>
+                    <td><input type ="number" name = "input" id="input" step="1"></td></tr> 
+            
+            <tr><td>Convert to: </td>
+                    <td><input type = "button" value = "Celsius" id="celsius">
+                        <input type = "button" value = "Farenheit" id="farenheit"></td></tr>
+                
+            <tr><td><label for="output" >Converted temperature:</label></td>
+                <td><input name="output" id="output" type = "text" value="0" readonly></td></tr>
+                
+                
+            </table>
+        <input type = "reset" value = "Reset" id="reset">       
+    </form> 
+        <br>                                                    
+     
+        <ul><li><a href = "../hw3.html">Go Back</a></li></ul> 
+        </div>
+        </body>
+</html>

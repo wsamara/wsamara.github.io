@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 4</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 4: using for and while loops.">
+        <link rel="stylesheet" href="hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            $(document).ready ( function () {
+                
+                $("[href*='part1']").hover(
+                    function () {$("#description").text ("Part 1: Using for and while loops to calculate sum and product of a sequence");},
+                    function () {$("#description").text ("");}
+                );
+                $("[href*='part2']").hover(
+                    function () {$("#description").text ("Part 2: Calculating and printing compound interest schedule");},
+                    function () {$("#description").text ("");}
+                );
+                $("[href*='ec']").hover(
+                    function () {$("#description").text ("Extra Credit: printing a hollow square of *'s based on user input size");},
+                    function () {$("#description").text ("");}
+                );
+            });
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 4: Loops</h1> 
+        
+            <ul>
+                 <li><a href = "hw4/hw4part1.html">Part 1</a></li>
+                 <li><a href = "hw4/hw4part2.html">Part 2</a></li>
+                <li><a href = "hw4/hw4ec.html">Extra Credit</a></li>
+                <li><a href = "index.html">Go Back</a></li>
+            </ul>
+            <h3 id="description"></h3>
+        </div>
+    </body>
+</html>

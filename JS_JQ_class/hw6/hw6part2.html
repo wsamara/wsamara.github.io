@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CNIT 133 Homework 6 Part 2</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 6 Part 2: Using charAt method to search for character ina  string and window.open () to display messages">
+    <link rel="stylesheet" href="../hw1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#output").text ("");
+            $("#string").focus();
+            var thePopUp;
+
+            $("#submit").click (function () {
+                if ($("form").valid()) {
+
+                    let myString = $("#string").val();
+                    let myChar = $("#char").val();
+                    let count = 0;
+                    for (let i=0; i<myString.length; i++){
+                        if (myString.charAt(i).toLowerCase() == myChar.toLowerCase()){
+                            count ++;
+                        }
+                    }
+                    if (count > 0) {
+                        $("#output").text("The character '" + myChar + "' shows up " + count + " time(s) in the text.");
+                    } else {
+                        let myText = "";
+                        myText="<html>\n";
+                        myText+="<head>\n";
+                        myText += "<style>body { font-size:0.5em}</style>\n"
+                        myText+="<title>Not FOund</title>\n";
+                        myText+="</head>\n";
+                        myText+="<body>\n";
+                        myText+= "<p> There is no occurrences found of the character \'" + myChar + "\' </p>\n";
+                        myText+="<input type='button' value='Close Window' onclick='window.close()'>\n";
+                        myText+="</body>\n";
+                        myText+="</html>\n";
+
+                        $("#string").val("");
+                        $("#char").val("");
+                        $("#output").text("");
+
+                        thePopUp =window.open("","new_window", "top=600,left=450,width=300,height=100");
+                        thePopUp.focus();
+                        thePopUp.document.write(myText);
+                        thePopUp.document.close();
+                    }
+
+                } else {
+                    $("#output").text ("");
+                }
+
+
+            });
+            $("#reset").click (function () {
+
+               try {
+
+                   thePopUp.window.close();
+               } catch (e) {}
+
+                location.reload ();
+            });
+        });
+
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <h1>CNIT 133 Homework 6 Part 2: Searching a Character in a String</h1>
+    <form>
+        <table>
+            <tr><td><label for="string">Enter Text: </label></td>
+                <td><textarea name="string" id="string" class="required"></textarea></td></tr>
+            <tr><td><label for="char">Enter a Character to Search: </label></td>
+                <td><input type="text" name="char" id="char" maxlength="1" size="1" class="required"></td></tr>
+        </table>
+        <input type="button" value="Search"  id="submit">
+        <input type="reset" value="reset" id="reset">
+        <br>
+        <div id="output"></div>
+
+    </form>
+
+
+    <ul>
+
+        <li><a href = "../hw6.html">Go Back</a></li>
+    </ul>
+
+</div>
+</body>
+</html>

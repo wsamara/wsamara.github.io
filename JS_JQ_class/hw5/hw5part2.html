@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 5 Part 2</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 5 Part 2: Utilizing pulldown menus to navigate by onclick and onchange event handelers">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            
+            $(document).ready(function () {
+                
+                $("[value=Go]").click (function () {
+                    
+                    navigate (this.form); 
+                });
+                $("#onChange").change (function () {
+                    
+                    navigate (this.form); 
+                });
+            });
+            
+            
+            
+           
+            function navigate (myForm){
+                    let myLocation = myForm.destinationList.options[myForm.destinationList.selectedIndex].value;
+                    if (myLocation !== "") {
+                        console.log ("opening new page");
+                        window.open(myLocation,'_blank');
+                    }
+                    
+                }
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 5 Part 2: Navigating by pulldowns</h1>
+            <h3>Open a Previous Homework in a New Tab (by using change event handler)</h3>
+            <form>
+            <select name="destinationList" id="onChange">
+                <option value="">Choose Destination:</option>
+                <option value="../hw2.html">Homework 2</option>
+                <option value="../hw3.html">Homework 3</option>
+                <option value="../hw4.html">Homework 4</option>
+
+            </select>
+            </form>
+
+        <br><br>
+
+        <form>
+            <h3>Open a Previous Homework in a New Tab (using click event handler)</h3>
+            <select name="destinationList">
+                <option value="">Choose Destination:</option>
+                <option value="../hw2.html">Homework 2</option>
+                <option value="../hw3.html">Homework 3</option>
+                <option value="../hw4.html">Homework 4</option>
+                </select>    
+            <input type="button" value="Go" >
+        </form>
+
+            
+            <ul>
+                 
+                <li><a href = "../hw5.html">Go Back</a></li>
+            </ul>
+            
+        </div>
+    </body>
+</html>

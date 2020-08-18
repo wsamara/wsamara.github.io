@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 3 Part 4: Guess The Answer </title>
+        <meta charset="utf-8">
+        <meta name="description" content="CCSF's Spring 2020 CNIT 133 Homework 3 Part 4: using JavaScript and JQuerry to perform basic functions on input values and Math.random (); guessing the product of two random numbers">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script>
+            
+        var theAnswer;
+
+        $(document).ready(function(){
+            console.log ("document ready");
+            
+            theAnswer = generateNumbers ();
+            console.log (theAnswer);
+            $("#input").focus();
+            $("#myform").validate({
+                rules: 
+            {
+		      input: { required: true, number: true, min: 0, max: 81},             
+            }
+            });
+
+            $("#submit").click (function () {
+            console.log ("are my inputs valid?");
+              if ($("#myform").valid ()){ 
+                console.log ("input valid");
+                process ();
+                } else {$("#input").select ();}                      
+            });
+            
+             $("#reset").click (function () {
+                console.log ("reloading page");
+                location.reload ();              
+            }); 
+                                   
+        });
+              
+            function generateNumbers () {
+                console.log ("Generating 2 randoms numbers and their product");
+                 var myNumber1, myNumber2;
+                  
+                  myNumber1 = Math.floor(Math.random() * 10);
+                  myNumber2 = Math.floor(Math.random() * 10);
+                  
+                  $("#question").text("What is the product of " + myNumber1 + " and "+ myNumber2 + " ?");           return myNumber1 * myNumber2;                                                          
+                 } 
+            
+            function process () {
+                console.log ("comparing your answer");
+                 var myInput;
+                  
+                  myInput = parseInt($("#input").val () );
+                  
+                if (myInput == theAnswer){
+                    $("#answer").text ("Very good! " + myInput + " is correct! Would like to try again?");
+		    
+                    $("#tryAgain").html ('<input type="button" value="Yes" id="yes">                                                    <input type="button" value="No" id="no">');
+                    
+		    $("#yes").focus ();
+
+		   $("#yes").click (function () {
+                        console.log ("reloading page");
+                        location.reload ();              
+                    }); 
+                    $("#no").click (function () {
+                        
+                        $("#submit, #yes, #no, #input, label, h2, h3").hide ();
+			$("#reset").focus ();              
+                    }); 
+                } else {
+                    $("#answer").text ("No, " + myInput + " is incorrect! Please try again.");
+		     $("#input").focus ();
+                     
+                }                
+                $("#input").val("");  
+		
+		  	                                                                    
+                 }  
+      
+        </script>   
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 3 Part 4:  Guess The Product </h1>        
+                <h2 id="question"></h2>
+              <form name ="myform" id="myform">
+            <table>
+                <tr><td><label for="input">Yout answer: </label></td>
+                    <td><input type ="number" name = "input" id="input" step="1"></td></tr> 
+            
+            </table>
+        <input type = "button" value = "Submit" id="submit">
+        <input type = "reset" value = "Reset" id="reset">  
+        <br>
+        <h3 id="answer"></h3>
+        <div id="tryAgain"></div>
+        
+    </form> 
+        <br>                                                    
+     
+        <ul><li><a href = "../hw3.html">Go Back</a></li></ul> 
+        </div>
+        </body>
+</html>

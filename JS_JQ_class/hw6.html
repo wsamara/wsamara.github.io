@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CNIT 133 Homework 6</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 6: Objects">
+    <link rel="stylesheet" href="hw1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).ready ( function () {
+
+            $("[href*='part1']").hover(
+                function () {$("#description").text ("Part 1: Using Math Object to do basic calculations");},
+                function () {$("#description").text ("");}
+            );
+            $("[href*='part2']").hover(
+                function () {$("#description").text ("Part 2: Using charAt to count occurrences in a string and using window.open to display message");},
+                function () {$("#description").text ("");}
+            );
+            $("[href*='part3']").hover(
+                function () {$("#description").text ("Part 3: Using JQuery mask for form inputs and string split to parse phone numbers");},
+                function () {$("#description").text ("");}
+            );
+        });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <h1>CNIT 133 Homework 6: Objects</h1>
+
+    <ul>
+        <li><a href = "hw6/hw6part1.html">Part 1</a></li>
+        <li><a href = "hw6/hw6part2.html">Part 2</a></li>
+        <li><a href = "hw6/hw6part3.html">Part 3</a></li>
+        <li><a href = "index.html">Go Back</a></li>
+    </ul>
+    <div id="description"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 2 Extra Credit</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CCSF's Spring 2020 CNIT 133 Homework 2 Extra Credit using JavaScript and JQuerry to perform basic operations on input values; using a currency rate table to convert user input and JQuerry show/hide functionaility">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+        
+        function process(){ 
+        
+        var r1, r2, r3, r4, r5, v1, v2, v3,v4, v5, amount;
+        
+        r1 = parseFloat(document.forms["myform"].elements["rateHKD"].value);
+        r2 = parseFloat(document.forms["myform"].elements["rateCD"].value);
+        r3 = parseFloat(document.forms["myform"].elements["rateEU"].value);
+        r4 = parseFloat(document.forms["myform"].elements["rateJV"].value);
+        r5 = parseFloat(document.forms["myform"].elements["rateMP"].value);
+        
+        amount = parseFloat(document.forms["myform"].elements["amounts"].value);
+       
+        v1 = r1*amount;
+        v2=r2*amount;
+        v3=r3*amount;
+        v4 = r4*amount;
+        v5 = r5*amount;
+                
+        document.forms["myform"].elements["valueHKD"].value = v1.toFixed(2);
+        document.forms["myform"].elements["valueCD"].value = v2.toFixed(2);
+        document.forms["myform"].elements["valueEU"].value = v3.toFixed(2);
+         document.forms["myform"].elements["valueJV"].value = v4.toFixed(2);
+        document.forms["myform"].elements["valueMP"].value = v5.toFixed(2);
+    
+    }
+
+	   function validate () {
+	
+        var r1, r2, r3, r4, r5;
+        
+        r1 = parseFloat(document.forms["myform"].elements["rateHKD"].value);
+        r2 = parseFloat(document.forms["myform"].elements["rateCD"].value);
+        r3 = parseFloat(document.forms["myform"].elements["rateEU"].value);
+        r4 = parseFloat(document.forms["myform"].elements["rateJV"].value);
+        r5 = parseFloat(document.forms["myform"].elements["rateMP"].value);
+        
+        amount = parseFloat(document.forms["myform"].elements["amounts"].value);
+        
+        if (isNaN(amount) || isNaN(r1) || isNaN(r2) || isNaN(r3) || isNaN(r4) || isNaN(r5) )
+            {
+		      document.getElementById("error").innerHTML = "ERROR: numbers have to be integers";
+		      $(".submit").prop('disabled', true);
+	   } else {
+		  document.getElementById("error").innerHTML = "";
+		  $(".submit").prop('disabled', false);
+	   }
+    }
+            
+    $(document).ready(function(){
+        $(".input").focusout ( function(){
+        validate ();
+        });
+        $(".input").focusin(function(){
+            $(this).css('background-color','lightgrey');
+        });
+        $("button").click(function(){
+            $("#panel").slideToggle("slow");
+        });        
+    });
+    </script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 2 Extra Credit</h1>        
+            <button type="button">Click to Hide Instructions</button>
+            <div id="panel">The foreign exchange rates in July 2019. Enter a dollar amount in the table below to see the corresponding foreign exchange values</div><br>
+            <br>
+            <h3>Monetary Exchange Rates</h3>
+            <form name = "myform">
+                <table>
+                    <tr><th>Currency</th><th>Rate</th><th>Value</th></tr>
+                    <tr><td>Hong Kong Dollar</td>
+                        <td><input type="number" value="78.00" name = "rateHKD" class="input"></td>
+                        <td><input type = "number" name = "valueHKD" readonly></td>
+                    </tr>               
+                        <tr><td>Canadian Dollar</td>
+                        <td><input type="number" value="13.10" name = "rateCD" class="input"></td>
+                        <td><input type = "number" name = "valueCD" readonly></td>
+                    </tr>
+                    
+                     <tr><td>Euro</td>
+                        <td><input type="number" value="0.89" name = "rateEU" class="input"></td>
+                        <td><input type = "number" name = "valueEU" readonly></td></tr>
+                    
+                    <tr><td>Japanese Yen</td>
+                        <td><input type="number" value="1083.80" name = "rateJV" class="input"></td>
+                        <td><input type = "number" name = "valueJV" readonly></td></tr>
+                    
+                    <tr><td>Mexican Peso</td>
+                        <td><input type="text" value="191.10" name = "rateMP" class="input"></td>
+                        <td><input type = "number" name = "valueMP" readonly></td></tr>
+                    
+                    
+                    <tr><td>Enter Amount in U.S. Dollars</td>
+                         <td></td>
+                         <td><input type="number" id = "amounts" name = "amounts" value="1" class ="input" autofocus></td></tr>                
+            </table>
+            <br>
+            <input type = "button" value = "Calculate" onclick = "process()">
+            <input type = "reset" value = "Reset" class="input">
+        </form>
+        <br>
+        <div id="error"></div>
+
+        <ul><li><a href = "../hw2.html">Go Back</a></li></ul> 
+        </div>
+    </body>
+</html>

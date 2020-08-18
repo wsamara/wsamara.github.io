@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 5 Part 1</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 5 Part 1: Validating different input types">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script>
+            
+            $(document).ready(function () {
+                
+                $("form").validate({
+                    messages:
+                        {
+                            text: "Please enter any text",
+                            pulldown: "Please select an option",
+                            radio: "Please select one radio buttion",
+                            checkboxes: "Please check at least one box"
+                        },
+
+                    errorPlacement: function (error, element) {
+                        if (element.is(":radio") || element.is(":checkbox")) {
+                            error.appendTo(element.parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+
+                });
+
+                $("#submit").click (function () {
+                    if ($("form").valid () ){
+                        $("#success").text("Passed Validation Successfully. Form Submitted");
+                        $("form").get(0).reset ();
+
+                    } else {
+                        $("#success").text ("");
+                    }
+                });
+
+                $(":reset").click(function () {
+                    $("form").validate().resetForm ();
+                    $("#success").text ("");
+
+                });
+
+            });
+
+           
+
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 5 Part 3: Validating Forms</h1>
+            <h3>All fields are required below</h3>
+            <form>
+                <table>
+                    <tr><td><label for="text">Enter a text: </label></td>
+                        <td><input name="text" id="text" class="required" type="text"></td>
+                    </tr>
+                    <tr><td>Select at least one: </td>
+                        <td><input type="checkbox" name="checkboxes" id="checkbox1" value="checkbox1" class="required">
+                            <label for="checkbox1">Checkbox1</label>
+                            <br>
+                            <input type="checkbox" name="checkboxes" id="checkbox2" value="checkbox2">
+                            <label for="checkbox2">Checkbox2</label>
+                            </td>
+
+                    </tr>
+                    <tr><td>Select one: </td>
+                        <td><input type="radio" name="radio" id="radio1" value="radio1" class="required">
+                            <label for="radio1">Radio Button 1</label>
+                            <br>
+                            <input type="radio" name="radio" id="radio2" value="radio2">
+                            <label for="radio2">Radio Button 2</label>
+                        </td>
+
+                    </tr>
+                    <tr><td><label for="pulldown">Choose an option: </label></td>
+                        <td><select name="pulldown" id="pulldown" class="required">
+                                <option value="">-- None Selected --</option>
+                                <option value="option1">Option 1</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+
+                        </select></td>
+                    </tr>
+
+                </table>
+                <input type="button" value="Submit" id="submit">
+                <input type="reset" value="Reset">
+
+        </form>
+            <div id="success"></div>
+
+            
+            <ul>
+                 
+                <li><a href = "../hw5.html">Go Back</a></li>
+            </ul>
+            
+        </div>
+    </body>
+</html>

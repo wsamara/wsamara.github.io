@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 4 Part 1</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 4 Part 1: Using for and while loops to calculate sum and product of a sequence.">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(document).ready ( function () {
+                
+                // Part 1a
+                var theTextProduct = "Part 1a: ", theTextSum="", theAnswerProduct = 1, theAnswerSum = 0, 
+                    theMin = 5, theMax = 21, theIncrement = 4;
+                for (let i = theMin; i<=theMax; i += theIncrement){
+                    theTextProduct += i;
+                    i == theMax ? theTextProduct += " = " : theTextProduct += " * ";
+                    theTextSum += i;
+                    i == theMax ? theTextSum += " = " : theTextSum += " + ";
+                    theAnswerProduct *= i;
+                    theAnswerSum += i;
+                }
+                theTextProduct += theAnswerProduct;
+                theTextSum += theAnswerSum;
+                $("#1a").html (theTextProduct + "<br>" + theTextSum);
+                
+                // Part 1b
+                var theTextProduct = "Part 1b: ", theTextSum="", theAnswerProduct = 1, theAnswerSum = 0, 
+                    theMin = 3, theMax = 21, theIncrement = 3;
+                
+                var i = theMin;
+                while (i<=theMax){
+                    theTextProduct += i;
+                    i == theMax ? theTextProduct += " = " : theTextProduct += " * ";
+                    theTextSum += i;
+                    i == theMax ? theTextSum += " = " : theTextSum += " + ";
+                    theAnswerProduct *= i;
+                    theAnswerSum += i;
+                    i += theIncrement
+                }
+                theTextProduct += theAnswerProduct;
+                theTextSum += theAnswerSum;
+                $("#1b").html (theTextProduct + "<br>" + theTextSum);          
+                
+                $("*").draggable ();
+                
+            });
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 4 Part 1: Loops</h1> 
+            <p id="1a"></p>
+            <p id="1b"></p>
+            <ul>
+                 <li><a href = "../hw4.html">Go Back</a></li>
+            </ul>           
+        </div>
+    </body>
+</html>

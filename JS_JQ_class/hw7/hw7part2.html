@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CNIT 133 Homework 7 Part 2</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CNIT 133 JavaScript and JQuery Homework 7 Part 2: Navigation menu using JQuery to link all other pages">
+    <link rel="stylesheet" href="../hw1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            $(".nav li").hover (function () {
+                $("ul", this).fadeIn ();
+            }, function() {
+                $("ul", this).fadeOut ();
+            });
+
+
+
+        });
+
+
+
+    </script>
+</head>
+<body>
+<ul class="nav">
+    <li><a href = "../index.html">Home</a></li>
+    <li><a href ="../hw2.html">Homework 2</a>
+        <ul>
+            <li><a href = "../hw2/part1.html">Part 1</a></li>
+            <li><a href = "../hw2/part2.html">Part 2</a></li>
+            <li><a href = "../hw2/part3.html">Part 3</a></li>
+            <li><a href = "../hw2/ec.html">Extra Credit</a></li>
+        </ul>
+    </li>
+    <li><a href ="../hw3.html">Homework 3</a>
+        <ul>
+            <li><a href = "../hw3/hw3part1.html">Part 1</a></li>
+            <li><a href = "../hw3/hw3part2.html">Part 2</a></li>
+            <li><a href = "../hw3/hw3part3.html">Part 3</a></li>
+            <li><a href = "../hw3/hw3part4.html">Part 4</a></li>
+        </ul>
+    </li>
+    <li><a href ="../hw4.html">Homework 4</a>
+        <ul>
+            <li><a href = "../hw4/hw4part1.html">Part 1</a></li>
+            <li><a href = "../hw4/hw4part2.html">Part 2</a></li>
+            <li><a href = "../hw4/hw4ec.html">Extra Credit</a></li>
+        </ul>
+    </li>
+    <li><a href ="../hw5.html">Homework 5</a>
+        <ul>
+            <li><a href = "../hw5/hw5part1.html">Part 1</a></li>
+            <li><a href = "../hw5/hw5part2.html">Part 2</a></li>
+            <li><a href = "../hw5/hw5part3.html">Part 3</a></li>
+        </ul>
+    </li>
+    <li><a href ="../hw6.html">Homework 6</a>
+        <ul>
+            <li><a href = "../hw6/hw6part1.html">Part 1</a></li>
+            <li><a href = "../hw6/hw6part2.html">Part 2</a></li>
+            <li><a href = "../hw6/hw6part3.html">Part 3</a></li>
+        </ul>
+    </li>
+    <li><a href ="../hw7.html">Homework 7</a>
+        <ul>
+            <li><a href = "../hw7/hw7part1.html">Part 1</a></li>
+            <li><a href = "../hw7/hw7part2.html">Part 2</a></li>
+        </ul>
+    </li>
+    <li><a href ="../hw8.html">Homework 8</a></li>
+</ul>
+<div class="wrapper">
+    <h1>CNIT 133 Homework 7 Part 2: Navigation Menu</h1>
+    <h3>Use the menu above to go to the desired page</h3>
+    
+
+
+    <ul>
+
+        <li><a href = "../hw7.html">Go Back</a></li>
+    </ul>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CNIT 133 Homework 7</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 7: Object Model and Miscellaneous jQuery">
+    <link rel="stylesheet" href="hw1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).ready ( function () {
+
+            $("[href*='part1']").hover(
+                function () {$("#description").text ("Part 1: Using script to change page style based on user selection");},
+                function () {$("#description").text ("");}
+            );
+            $("[href*='part2']").hover(
+                function () {$("#description").text ("Part 2: Using Jquery to create a navigation menu to link all other pages");},
+                function () {$("#description").text ("");}
+            );
+
+        });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <h1>CNIT 133 Homework 7: Object Model and Miscellaneous  </h1>
+
+    <ul>
+        <li><a href = "hw7/hw7part1.html">Part 1</a></li>
+        <li><a href = "hw7/hw7part2.html">Part 2</a></li>
+        <li><a href = "index.html">Go Back</a></li>
+    </ul>
+    <div id="description"></div>
+</div>
+</body>
+</html>

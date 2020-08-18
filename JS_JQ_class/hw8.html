@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 8: AJAX Applications</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CNIT 133 Homework 8: AJAX and REST API's">
+        <link rel="stylesheet" href="hw1.css">
+        <style>
+            #suggestion { height: auto; width: 100%;}
+            #part2 p {text-align: left;}
+            #part2 a {text-decoration:underline; color:blue; font-weight: normal; display: inline;}
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            $(document).ready ( function () {
+                $("#name").keyup(function () {
+                    let name = $(this).val ();
+                    if (name === ""){
+                        $("#suggestion").val("");
+                    } else {
+                        $.get(
+                            "gethint.php",
+                            {q: name},
+                            function (phpHint){
+                                $("#suggestion").val(phpHint);
+                            }
+                        );
+
+                    }
+                });
+                $("#submit").click(function () {
+                    let uni = $("#uni").val ();
+                    if (uni === ""){
+                        $("#output").text("");
+                    } else {
+                        $.getJSON(
+                            "world_universities_and_domains.json",
+                            function (data){
+                                let output = "";
+                                $.each(data, function(i, v) {
+                                    
+
+                                    if (v.name.toLowerCase().includes(uni.toLowerCase()) ){
+                                        output += "<h4>" + v.name + ": </h4>";
+                                        output += "<p>" + v.domains + "</p>";
+
+                                    }
+                                });
+                                $("#output").html (output);
+
+                            });
+
+                    }
+                });
+                $("#reset").click (function () {
+                    $("#output").text ("");
+                })
+            });
+
+        </script>
+
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 8: AJAX Applications</h1>
+
+            <h3>Part 1: Retrieving Data From a PHP file</h3>
+            <form id="part1">
+            <table>
+                <tr><td><label for="name">Start Entering a Name</label></td>
+                    <td><input name="name" id="name" type="text"></td>
+                    <td><input type="reset" value="Clear"></td>
+                </tr>
+                <tr>
+                    <td><label for="suggestion">Suggestions: </label></td>
+                    <td colspan="2"><textarea name="suggestion" id="suggestion" readonly></textarea></td>
+                </tr>
+            </table>
+            </form>
+            <h3>Part 2: REST API's</h3>
+            <form id="part2">
+                <table>
+                    <tr><td>REST API: </td>
+                        <td>University Domains</td></tr>
+                    <tr><td>Documentation: </td>
+                        <td><a target="_blank" href="https://github.com/Hipo/university-domains-list-api">https://github.com/Hipo/university-domains-list-api</a></td></tr>
+                    <tr><td>Request URL: </td>
+                        <td>http://universities.hipolabs.com</td></tr>
+                    <tr><td>Access: </td>
+                        <td>Public (Free)</td></tr>
+                    <tr><td>Data Type: </td>
+                        <td>JSON</td></tr>
+                    <tr><td colspan="2">Demonstration: </td></tr>
+
+                    <tr><td><label for="uni">Enter University Name</label></td>
+                        <td><input name="uni" id="uni" type="text"></td></tr>
+                        <tr><td colspan="2"><input type="button" id="submit" value="Find Domains">
+                            <input type="reset" value="Reset" id="reset"></td>
+                    </tr>
+                </table>
+                <div id="output"></div>
+            </form>
+            <br><br><br>
+            <ul><li><a href = "index.html">Go Back</a></li></ul> 
+        </div>
+    </body>
+</html>

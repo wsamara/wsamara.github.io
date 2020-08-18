@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CNIT 133 Homework 6 Part 1</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 6 Part 1: Using the Math Object to perform basic calculations and rounding">
+    <link rel="stylesheet" href="../hw1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#output").hide ();
+            $("#input").focus();
+
+
+
+
+
+            $("#submit").click (function () {
+
+                let myInput = $("#input").val ();
+                let inputRegex = /^\d+\.\d{4,}$/;
+
+                if (!inputRegex.test(myInput)){
+                    $("#message").text("Please enter a number with at least 4 digits after the decimal.");
+                    $("#output").hide ();
+                    $("#input").select();
+                } else {
+                    $("#message").text("Here are the results:");
+                    $("#theInput").val(myInput);
+                    let myFloat = parseFloat(myInput);
+                    $("#sqrt").val(Math.round(Math.sqrt(myFloat)).toFixed() );
+                    // Round the number to the nearest i decimal
+                    for (let i =0; i<=3; i++){
+                        let roundingFactor = Math.pow(10,i);
+
+                        $("#round" + i).val ( (Math.round(myFloat * roundingFactor)/roundingFactor).toFixed(i) );
+                    }
+                    $("#output").show ();
+                }
+            });
+            $("#reset").click (function () {
+                location.reload ();
+            });
+        });
+
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <h1>CNIT 133 Homework 6 Part 1: Math Object</h1>
+    <form>
+        <h3><label for="input">Enter a number with AT LEAST 4 decimal places</label></h3>
+        <input type="text" name="input" id="input">
+        <input type="button" value="Calculate"  id="submit">
+        <input type="reset" value="reset" id="reset">
+        <br>
+        <div id="message"></div>
+        <br>
+        <table id="output">
+
+            <tr>
+                <td><label for="theInput">You entered: </label></td>
+                <td><input type="text" id="theInput" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="sqrt">Square root to the nearest integer: </label></td>
+                <td><input type="text" id="sqrt" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="round0">Rounded to the nearest integer: </label></td>
+                <td><input type="text" id="round0" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="round1">Rounded to the nearest tenths position: </label></td>
+                <td><input type="text" id="round1" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="round2">Rounded to the nearest hundredths position: </label></td>
+                <td><input type="text" id="round2" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="round3">Rounded to the nearest thousandths position: </label></td>
+                <td><input type="text" id="round3" readonly></td>
+            </tr>
+
+        </table>
+    </form>
+
+
+    <ul>
+
+        <li><a href = "../hw6.html">Go Back</a></li>
+    </ul>
+
+</div>
+</body>
+</html>

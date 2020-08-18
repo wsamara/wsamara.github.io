@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 5 Part 3</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 5 Part 3: Working with 2 dimensional array containing state's info">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            
+            $(document).ready(function () {
+                
+                $("#output").hide ();
+                
+                let theStatesInfo = [
+                    ['AL','Alabama','Montgomery','4,887,871'],
+                    ['AK','Alaska','Juneau','737,438'],
+                    ['AZ','Arizona','Phoenix','7,171,646'],
+                    ['AR','Arkansas','Little Rock','3,010,825'],
+                    ['CA','California','Sacramento','39,557,045'],
+                    ['CO','Colorado','Denver','5,694,564']
+                ];
+                
+                
+                
+                $("#submit").click (function () {
+                    var myOutputArray;
+                   let myInput = $("#input").val ();
+                    for (let i=0; i < theStatesInfo.length; i++){
+                        if (theStatesInfo[i][0].toUpperCase () == myInput.toUpperCase()
+                           || theStatesInfo[i][1].toUpperCase () == myInput.toUpperCase() ){
+                            myOutputArray = theStatesInfo[i];
+                        }
+                    }
+                    if (myOutputArray == null){
+                        $("#message").text("Invalid State.");
+                        $("#output").hide ();
+                    } else {
+                        $("#message").text("Thank you for your inquiry.");
+                        for (let i =0; i<myOutputArray.length; i++){
+                            $("#output" + i).val (myOutputArray[i]);
+                        }
+                        $("#output").show ();
+                    }
+                }); 
+                $("#reset").click (function () {
+                    location.reload ();
+                });
+            });
+               
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 5 Part 3: States' Info</h1> 
+            <form>
+                <h3><label for="input">Enter State's Abbreviation or Name</label></h3>
+                <input type="text" name="input" id="input">
+                <input type="button" value="State's Info"  id="submit">
+                <input type="reset" value="reset" id="reset">
+                <br>
+                <div id="message"></div>
+                <br>
+                <table id="output">
+                    <tr>
+                        <th><label for="output0">Abbreviation</label></th>
+                        <th><label for="output1">Name</label></th>
+                        <th><label for="output2">Capital</label></th>
+                         <th><label for="output3">Population</label></th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="abbreviation" id="output0" readonly></td>
+                        <td><input type="text" name="name" id="output1" readonly></td>
+                        <td><input type="text" name="capital" id="output2" readonly></td>
+                        <td><input type="text" name="population" id="output3" readonly></td>
+                    </tr>
+                </table>
+            </form>
+
+            
+            <ul>
+                 
+                <li><a href = "../hw5.html">Go Back</a></li>
+            </ul>
+            
+        </div>
+    </body>
+</html>

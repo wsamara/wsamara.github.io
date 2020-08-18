@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 4 Part 2</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 4 Part 2: Using loops to print interest compunding schedule">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(document).ready ( function () {
+                
+                var n = 10, a, p = 1000, r, theText="";
+                
+                for ( r=0.05 ; r<=0.07; r+=0.01){
+                
+                    theText +="<table class='schedule''><tr><th>Year</th><th>Amount</th><th>Rate</th></tr>";
+                    
+                    for(let i=1; i<=n; i++){
+                        a=p*Math.pow((1+r), i);
+                        theText += "<tr><td>"+i+" "+"</td><td>"+a.toFixed(2)+" "+"</td><td>"+r.toFixed(2)+" "+"</tr>";
+                    }
+                    theText +="</table>";
+                    theText+="<br>";
+                }
+                $("#tables").html (theText);
+                
+            });
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 4 Part 2: Interest Compounding Schedule</h1> 
+            <div id="tables"></div>
+            <ul>
+                 <li><a href = "../hw4.html">Go Back</a></li>
+            </ul>           
+        </div>
+    </body>
+</html>

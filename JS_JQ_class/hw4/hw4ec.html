@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 4 Extra Credit:  Creating a Hollow Square</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CCSF's Spring 2020 CNIT 133 Homework 4 Extra Credit: Using loops to create a hollow square made of asterisks">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            console.log ("document ready");
+            
+            $("#input").focus();
+            
+            $("#myform").validate({
+                rules: 
+            {
+		      input: { required: true, number: true, min: 2, max: 10},             
+      
+            }         
+            });
+            
+            $("#create").click (function () {
+            console.log ("are my inputs valid?");
+              if ($("#myform").valid ()){ 
+                console.log ("inputs valid");
+                createSquare ();
+                } else {$("#input").select ();}                      
+            });
+            
+             $("#reset").click (function () {
+                console.log ("reloading page");
+                location.reload ();              
+            });                      
+                       
+        });
+              
+            function createSquare () {
+                var mySquare = "";
+                var myStars = parseInt ( $("#input").val()) + 1; // size of unit 1 is distance between 2 stars
+                for (let r = 1; r <= myStars; r++){
+                    for (let c=1; c <= myStars; c++){
+                        if (r == 1 || r == myStars || c == 1 || c == myStars){
+                            mySquare += "*";
+                        } else {
+                            mySquare += "&nbsp;&nbsp;";
+                        }
+                    }
+                mySquare += "<br>"; 
+                }
+                $("#square").html (mySquare);
+            }  
+      
+        </script>   
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 4 Extra Credit: Creating a Hollow Square of Asterisks</h1>        
+            
+              <form name ="myform" id="myform">
+            <table>
+                <tr><td><label for="input">Square side size: </label></td>
+                    <td><input type ="number" name = "input" id="input" step="1" value="2"></td></tr>          
+
+                
+            </table>
+            <input type = "button" value = "Create" id="create">  
+            <input type = "reset" value = "Reset" id="reset">       
+    </form> 
+        <br>                                                    
+        <div id="square"></div>
+        <br>
+        <ul><li><a href = "../hw4.html">Go Back</a></li></ul> 
+        </div>
+        </body>
+</html>

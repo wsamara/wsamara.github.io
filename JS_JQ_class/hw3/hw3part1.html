@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 2 Part 1: Student Grades</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CCSF Spring 2020 CNIT 133 Homework 2 Part 1: JavaScript JQuerry basic functions on input values; Yulia Berezina Integers">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            console.log ("document ready");
+            $("#homeworkAverage").select();
+            $("#myform").validate({
+                rules: 
+            {
+		      homeworkAverage: { required: true, number: true, min: 0, max: 100},
+        
+             final: { required: true, number: true, min: 0, max: 100},
+              midterm: { required: true, number: true, min: 0, max: 100},
+             participation: { required: true, number: true, min: 0, max: 100},
+            }         
+            });
+            $("#submit").click (function () {
+            console.log ("are my inputs valid?");
+              if ($("#myform").valid ()){ 
+                console.log ("inputs valid");
+                process ();
+                }                       
+            });
+             $("#reset").click (function () {
+                console.log ("reloading page");
+                location.reload ();              
+            });                      
+                       
+        });
+              function process () {
+                console.log ("calculating");
+                var myHomeworkAverage, myFinal, myMidterm, myParticipation, myGrade, myLetterGrade;
+                                          
+                myHomeworkAverage = parseInt ($("#homeworkAverage").val ());
+                myMidterm = parseInt ($("#midterm").val ());
+                myFinal = parseInt ($("#final").val ());
+                myParticipation = parseInt ($("#participation").val ());
+                                                              
+               myGrade = (0.5 * myHomeworkAverage) + (0.2 * myMidterm) + (0.2 * myFinal) + (0.1 *                              myParticipation);
+                myGrade = myGrade.toFixed (0);
+                console.log (myGrade);
+                                                              
+                switch (true){
+                    case myGrade >= 90: 
+                        myLetterGrade = "A";
+                        break;
+                    case myGrade >= 80: 
+                        myLetterGrade = "B";
+                        break;
+                    case myGrade >= 70: 
+                        myLetterGrade = "C";
+                        break;
+                    case myGrade >= 60: 
+                        myLetterGrade = "D. You must retake the course";
+                        break;
+                    default:
+                        myLetterGrade = "F. You must retake the couirse";
+                }
+                $("#result").val ("Final Grade: " + myGrade + "\t" + myLetterGrade);                                                             
+                 }
+                                        
+        
+        
+        </script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 3 Part 1: Student Grades</h1>        
+            
+            <form name ="myform" id="myform">
+            <table>
+        
+                <tr><td><label for="homeworkAverage" >Homework Average</label></td>
+                <td><input name="homeworkAverage" type = "number" class="input" id = "homeworkAverage" step = "1" value="0"></td></tr>
+                                                                                                                           
+                <tr><td><label for="midterm"> Midterm:</label></td>
+                <td><input type = "number" class="input" name = "midterm" id="midterm" step="1" value="0"></td></tr>
+        
+                <tr><td><label for="final">Final: </label></td>
+                <td><input type = "number" class="input" name = "final" id="final" step = "1" value="0"></td></tr>
+                
+                <tr><td><label for="participation">Participation: </label></td>
+                <td><input type = "number" class="input" name ="participation" id="participation" step = "1" value="0"></td></tr>
+                                
+                
+                <tr><td><label for="result">Class Grade:</label></td>
+                <td><textarea name = "result" id="result" class="result" readonly></textarea></td></tr>
+                
+                </table>
+
+                <input type = "button" value = "Submit" class="submit" id="submit">
+                <input type = "reset" value = "Reset" id="reset">        
+                      
+        </form>
+        <br>
+                                                     
+        
+
+        <ul><li><a href = "../hw3.html">Go Back</a></li></ul> 
+        </div>
+    </body>
+</html>

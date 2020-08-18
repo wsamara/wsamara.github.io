@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CNIT 133 Homework 6 Part 3</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CNIT 133 JavaScript and JQuerry Homework 6 Part 3: Using JQuerry to mask form input as telephone numbers and using string methods to parse">
+    <link rel="stylesheet" href="../hw1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#input").focus();
+
+
+            $("#input").keyup (function () {
+                $("#input").mask ('(000) 000-0000');
+                let phone = $("#input").val ();
+                let parsedPhone = phone.split ("(").join ("").split (") ").join("-").split("-");
+                for (let i=0; i<3; i++){
+                    $("#output" + i).val (parsedPhone[i]);
+                }
+
+
+
+            });
+            $("#reset").click(function () {
+
+                $("#input").focus();
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <h1>CNIT 133 Homework 6 Part 3: Form Mask and String Parsing</h1>
+    <form>
+        <table>
+            <tr><td><label for="input">Enter Phone Number: </label></td>
+                <td><input type="tel" name="input" id="input"></td></tr>
+            <tr><td>Parsed Phone Number: </td>
+                <td>
+                    (<input type="text" name="output0" id="output0" size="3" maxlength="3" class="sizeAuto" readonly>)&nbsp;
+                    <input type="text" name="output1" id="output1" size="3" maxlength="3" class="sizeAuto" readonly>-
+                    <input type="text" name="output2" id="output2" size="4" maxlength="4" class="sizeAuto" readonly>
+                </td></tr>
+        </table>
+        <input type="reset" value="reset" id="reset">
+
+
+    </form>
+
+
+    <ul>
+
+        <li><a href = "../hw6.html">Go Back</a></li>
+    </ul>
+
+</div>
+</body>
+</html>

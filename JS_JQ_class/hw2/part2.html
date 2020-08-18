@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CNIT 133 Homework 2 Part 2</title>
+        <meta charset="utf-8">
+        <meta name="description" content="CCSF's Spring 2020 CNIT 133 Homework 2 Part 2: using JavaScript and JQuerry to perform basic operations on input values, validate and fadeIn ()">
+        <link rel="stylesheet" href="../hw1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+        function process (){
+            var number1, number2, number3, n1, n2, n3, sum;
+        
+            number1 = document.forms["myform"].elements["num1"].value;
+            number2=document.forms["myform"].elements["num2"].value;
+            number3 = document.forms["myform"].elements["num3"].value;
+            n1=parseInt(number1);
+            n2=parseInt(number2);
+            n3=parseInt(number3);
+        
+            sum = n1+n2+n3;
+            avg = sum/3;
+            product=n1*n2*n3; 
+        
+	       document.forms["myform"].elements["result"].value = ("You entered integers " + n1+ ", "+n2+", " +n3 +", " + "\nThe sum of the integers is " + sum + "\nThe average of the integers is " + avg +"\nThe product of the integers is "+ product+"\nThe minimu integers is "+Math.min(n1,n2,n3) +"\nThe maximum integer " + Math.max(n1, n2, n3) + "." );
+        }
+
+	   function validate () {
+	
+	       var number1, number2, number3, n1, n2, n3;
+        
+            number1 = document.forms["myform"].elements["num1"].value;
+            number2=document.forms["myform"].elements["num2"].value;
+            number3 = document.forms["myform"].elements["num3"].value;
+            n1=parseInt(number1);
+            n2=parseInt(number2);
+            n3=parseInt(number3);
+	
+	       if (isNaN(n1)||isNaN(n2)||isNaN(n3))	{ 
+		      document.getElementById("error").innerHTML = "ERROR: numbers have to be integers";
+		      $(".submit").prop('disabled', true);
+	   } else {
+		  document.getElementById("error").innerHTML = "";
+		  $(".submit").prop('disabled', false);
+	   }
+    }
+            
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("textarea").fadeTo("slow", 0.10);
+        });
+
+        $(".input").focusout ( function(){
+            validate ();
+            $("textarea").fadeTo("slow", 1);
+        });  
+    });
+    </script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>CNIT 133 Homework 2 Part 2</h1>        
+            
+            <form name = "myform">
+            <table>
+        
+                <tr><td>The first integer:</td>
+                <td><input type = "number" class="input" id = "num1" step = "1" value="0"></td></tr>
+                <tr><td>The second integer:</td>
+                <td><input type = "number" class="input" name = "num2" step="1" value="0"></td></tr>
+        
+                <tr><td>The third integer:</td>
+                <td><input type = "number" class="input" name = "num3" step = "1" value="0"></td></tr>
+                
+                <tr><td>Result:</td><td><textarea name = "result" readonly></textarea></td></tr>
+                </table>
+
+                <input type = "button" value = "Submit" onclick = "process()" class="submit">
+                <input type = "reset" value = "Reset" class="input">        
+   
+        </form>
+        <button type="button">Click to fade results</button>
+        <br>
+        <div id="error"></div>
+
+        <ul><li><a href = "../hw2.html">Go Back</a></li></ul> 
+        </div>
+    </body>
+</html>

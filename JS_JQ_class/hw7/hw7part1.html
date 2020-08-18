@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CNIT 133 Homework 7 Part 1</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CNIT 133 JavaScript and JQuery Homework 7 Part 1: Give the user the option to change CSS from the page it self">
+    <link rel="stylesheet" href="../hw1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style>
+        .italic {font-style: italic}
+        .bold {font-weight: bold}
+        .yellow {background-color: yellow;}
+        .lightgrey {background-color:lightgrey;}
+        .original {background-color: #FFF ;}
+        .image {background-image: url("fall.jpg")}
+        #image {width: 75px; height: 50px; margin-left: 20px;}
+        .small {font-size: small }
+        .medium { font-size: medium}
+        .large {font-size: large}
+        select#fontSize {font-size: inherit}
+
+
+    </style>
+    <script>
+
+        $(document).ready(function () {
+            $("[name='fontStyle']").change( function (){
+                let value = $(this).val ();
+                $(this).is(":checked") ? $("body").addClass(value) : $("body").removeClass (value);
+
+            });
+            $("[name='backgroundColor']").change( function (){
+                let value = $(this).val ();
+                if ($(this).is(":checked")) {
+                    $(".wrapper").get(0).className = "wrapper " + value;
+                }
+
+            });
+            $("[name=image]").click( function () {
+                $("body").toggleClass(this.className);
+            });
+            $("[name=fontSize]").change( function () {
+
+                $("#fontSize option").each (function () {
+                     $("body").removeClass($(this).val ());
+                })
+                $("body").addClass( ($(this).val()) );
+            });
+            $("#reset").click (function () {
+                location.reload();
+            });
+
+
+        });
+
+
+
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <h1>CNIT 133 Homework 7 Part 1: Changing Page CSS</h1>
+    <h3>Customize page layout by selecting the options below</h3>
+    <form>
+        <table>
+            <tr><td><label for="image">Background Image </label></td>
+                <td><input name="image" id="image" class="image" type="button" title="Click to add/remove"></td>
+            </tr>
+            <tr><td>Font Style </td>
+                <td><input type="checkbox" name="fontStyle" id="italic" value="italic">
+                    <label for="italic" class="italic">Italic</label>
+                    <br>
+                    <input type="checkbox" name="fontStyle" id="bold" value="bold">
+                    <label for="bold" class="bold">Bold</label>
+                </td>
+
+            </tr>
+            <tr><td>Background Color: </td>
+                <td><input type="radio" name="backgroundColor" id="original" value="original" checked>
+                    <label for="original" class="original">Original</label>
+                    <br>
+                    <input type="radio" name="backgroundColor" id="yellow" value="yellow" >
+                    <label for="yellow" class="yellow">Yellow</label>
+                    <br>
+                    <input type="radio" name="backgroundColor" id="lightgrey" value="lightgrey" >
+                    <label for="lightgrey" class="lightgrey">Light Grey</label>
+                </td>
+
+            </tr>
+            <tr><td><label for="fontSize">Choose Font Size: </label></td>
+                <td><select name="fontSize" id="fontSize">
+                    <option value="">Default</option>
+                    <option value="small" class="small">Small </option>
+                    <option value="medium" class="medium">Medium </option>
+                    <option value="large" class="large">Large </option>
+
+                </select></td>
+            </tr>
+
+        </table>
+        <input type="reset" value="Reset" id="reset">
+
+    </form>
+
+
+    <ul>
+
+        <li><a href = "../hw7.html">Go Back</a></li>
+    </ul>
+
+</div>
+</body>
+</html>
