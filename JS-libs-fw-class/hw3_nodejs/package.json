@@ -1,0 +1,15 @@
+{
+  "name": "hw3_nodejs",
+  "version": "1.0.0",
+  "description": "Simple Weather app",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wasim samara",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.2",
+    "yargs": "^16.0.3"
+  }
+}
